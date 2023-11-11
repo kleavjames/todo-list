@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import Text from './Text';
+import Text from '../atom/Text';
 import { useNavigation } from 'expo-router';
 import { colors, globalStyles, normalize } from '@/constants';
 
@@ -25,7 +25,7 @@ const Header: FC = () => {
       <TouchableOpacity onPress={navigateToProfile}>
         <Image
           style={styles.image}
-          source={require('../assets/images/prof-pic.png')}
+          source={require('@/assets/images/prof-pic.png')}
           resizeMode="contain"
         />
       </TouchableOpacity>

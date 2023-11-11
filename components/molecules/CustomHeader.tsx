@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import Text from './Text';
-import {Appbar} from 'react-native-paper';
+import {NativeStackHeaderProps} from '@react-navigation/native-stack';
 import {getHeaderTitle} from '@react-navigation/elements';
+import {Appbar} from 'react-native-paper';
 import { colors, globalStyles, normalize } from '@/constants';
 import ArrowLeftIcon from '@/assets/icons/arrowleft.svg'
+import { Text } from '../atom';
 
 const CustomHeader: FC<NativeStackHeaderProps> = ({
   navigation,

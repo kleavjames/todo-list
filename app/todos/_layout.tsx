@@ -1,6 +1,6 @@
 import React from "react";
 import { Stack } from "expo-router";
-import CustomHeader from "@/components/CustomHeader";
+import { CustomHeader } from "@/components";
 
 const TodosLayout = () => {
   return (

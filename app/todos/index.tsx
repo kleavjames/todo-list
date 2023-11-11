@@ -1,38 +1,33 @@
-import { colors, globalStyles, normalize } from '@/constants';
-import { Todo } from '@/types';
-import React, {FC, useCallback} from 'react';
+import React, { useCallback } from "react";
 import {
   FlatList,
   ListRenderItem,
   StyleSheet,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { Text, Container, Button, Header } from '@/components';
-import { Link } from 'expo-router';
+} from "react-native";
+import { Link } from "expo-router";
+import { colors, globalStyles, normalize } from "@/constants";
+import { Todo } from "@/types";
+import { Text, Container, Button, Header } from "@/components";
 
 const Todos = () => {
-  const renderTodoItems = useCallback<ListRenderItem<Todo>>(
-    ({item}) => {
-      return (
-        <View style={styles.todoWrapper}>
-          <TouchableOpacity
-            style={globalStyles.flex}
-            onPress={() => {}}>
-            <Text variant="titleMedium" style={globalStyles.textWhite}>
-              {item.title}
-            </Text>
-          </TouchableOpacity>
-          {/* <Checkbox
+  const renderTodoItems = useCallback<ListRenderItem<Todo>>(({ item }) => {
+    return (
+      <View style={styles.todoWrapper}>
+        <TouchableOpacity style={globalStyles.flex} onPress={() => {}}>
+          <Text variant="titleMedium" style={globalStyles.textWhite}>
+            {item.title}
+          </Text>
+        </TouchableOpacity>
+        {/* <Checkbox
             onPress={() => onCompleteTask(item)}
             styles={styles.check}
             status={item.completed ? 'checked' : 'unchecked'}
           /> */}
-        </View>
-      );
-    },
-    [],
-  );
+      </View>
+    );
+  }, []);
 
   const renderSeparator = () => <View style={styles.separator} />;
 
@@ -48,13 +43,13 @@ const Todos = () => {
       <View style={styles.todoList}>
         <FlatList
           data={[] as Todo[]}
-          keyExtractor={todo => todo.id.toString()}
+          keyExtractor={(todo) => todo.id.toString()}
           renderItem={renderTodoItems}
           ItemSeparatorComponent={renderSeparator}
           ListEmptyComponent={renderEmptyComponent}
         />
       </View>
-      <Link href={'/todos/add'} asChild>
+      <Link href={"/todos/add"} asChild>
         <Button onPress={() => {}} mode="contained">
           Add Todo
         </Button>
@@ -66,25 +61,25 @@ const Todos = () => {
 const styles = StyleSheet.create({
   todoWrapper: {
     backgroundColor: colors.foreground,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: normalize(10),
   },
   check: {
     borderWidth: 1,
     borderColor: colors.primary,
-    maxHeight: normalize(40, 'height'),
-    alignSelf: 'center',
+    maxHeight: normalize(40, "height"),
+    alignSelf: "center",
   },
   separator: {
-    marginTop: normalize(15, 'height'),
+    marginTop: normalize(15, "height"),
   },
   todoList: {
-    marginTop: normalize(50, 'height'),
+    marginTop: normalize(50, "height"),
     flex: 1,
   },
   empty: {
-    textAlign: 'center',
+    textAlign: "center",
     color: colors.foreground,
   },
 });

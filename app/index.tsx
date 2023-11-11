@@ -1,8 +1,8 @@
-import React, {FC, createRef, useRef} from 'react';
+import React from 'react';
 import {Image, View, Dimensions, StyleSheet} from 'react-native';
-import { Container, Text, Button } from '@/components';
-import { colors, globalStyles, normalize } from '@/constants';
 import { Link } from 'expo-router';
+import { Container, Text, Button } from '@/components';
+import { globalStyles, normalize } from '@/constants';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const imageHeight = SCREEN_HEIGHT / 2.5;
