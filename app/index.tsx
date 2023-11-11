@@ -1,16 +1,16 @@
-import React, {FC} from 'react';
+import React, {FC, createRef, useRef} from 'react';
 import {Image, View, Dimensions, StyleSheet} from 'react-native';
 import { Container, Text, Button } from '@/components';
-import { colors, normalize } from '@/constants';
+import { colors, globalStyles, normalize } from '@/constants';
+import { Link } from 'expo-router';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const imageHeight = SCREEN_HEIGHT / 2.5;
 
 const Welcome = () => {
-
   return (
     <Container>
-      <View style={styles.container}>
+      <View style={globalStyles.flex}>
         <Image
           style={styles.logo}
           source={require('@/assets/images/logo.png')}
@@ -21,24 +21,23 @@ const Welcome = () => {
           source={require('@/assets/images/welcome.png')}
           resizeMode="contain"
         />
-        <Text variant="displayMedium" style={styles.header}>
+        <Text variant="displayMedium" style={globalStyles.textWhite}>
           Manage your Task with
         </Text>
-        <Text variant="displayMedium" style={styles.title}>
+        <Text variant="displayMedium" style={globalStyles.textPrimary}>
           DayTask
         </Text>
       </View>
-      <Button mode="contained" onPress={() => {}}>
-        Let's Start
-      </Button>
+      <Link href={'/todos/'} asChild>
+        <Button mode="contained">
+          Let's Start
+        </Button>
+      </Link>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   logo: {
     height: normalize(100),
     width: normalize(100),
@@ -46,12 +45,6 @@ const styles = StyleSheet.create({
   welcomeImg: {
     width: '100%',
     height: normalize(imageHeight, 'height'),
-  },
-  header: {
-    color: colors.white,
-  },
-  title: {
-    color: colors.primary,
   },
 });
 

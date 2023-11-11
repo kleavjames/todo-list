@@ -1,3 +1,5 @@
+import { StyleSheet } from "react-native";
+
 export const colors = {
   primary: '#FFD56B',
   foreground: '#455A64',
@@ -9,3 +11,15 @@ export const colors = {
   icon: '#617D8A',
   black: '#000000',
 };
+
+export const globalStyles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+  textWhite: {
+    color: colors.white,
+  },
+  textPrimary: {
+    color: colors.primary,
+  }
+})
