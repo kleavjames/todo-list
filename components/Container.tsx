@@ -1,4 +1,4 @@
-import Colors from '@/constants/Colors';
+import { colors } from '@/constants';
 import { normalize } from '@/constants/size';
 import React, {FC} from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -27,7 +27,7 @@ const Container: FC<Props> = ({children}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.background,
+    backgroundColor: colors.background,
     flex: 1,
     paddingHorizontal: normalize(20),
   },

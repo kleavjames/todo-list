@@ -7,10 +7,9 @@ import {
 } from 'react-native-paper';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
-import { fontConfig } from '@/constants/fonts';
-import Colors from '@/constants/Colors';
+import { fontConfig, colors as RNColors } from '@/constants';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -54,7 +53,7 @@ export const theme = {
   // Specify custom property in nested object
   colors: {
     ...DefaultTheme.colors,
-    ...Colors,
+    ...RNColors,
   },
   fonts: configureFonts({config: fontConfig}),
 };
@@ -66,7 +65,7 @@ function RootLayoutNav() {
         <StatusBar
           barStyle="light-content"
           translucent
-          backgroundColor={Colors.background}
+          backgroundColor={RNColors.background}
         />
         <Stack screenOptions={{ headerShown: false}} />
       </PaperProvider>
