@@ -11,6 +11,7 @@ import { colors, globalStyles, normalize } from "@/constants";
 import { Todo } from "@/types";
 import { Text, Container, Button, Header, Checkbox } from "@/components";
 import { formattedDate } from "@/utils";
+import { useTodos } from "@/hooks/useTodos";
 
 // testing data
 const todos = [
@@ -23,6 +24,8 @@ const todos = [
 ];
 
 const Todos = () => {
+  const todos = useTodos(state => state.todos);
+
   const renderTodoItems = useCallback<ListRenderItem<Todo>>(({ item }) => {
     return (
       <View style={styles.todoWrapper}>

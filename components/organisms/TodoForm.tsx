@@ -10,7 +10,7 @@ import { DateTimePicker } from "../molecules";
 interface Props {
   data: Todo;
   onSubmit: (values: Todo) => void;
-  onDelete: (value: React.SetStateAction<boolean>) => void;
+  onDelete?: (value: React.SetStateAction<boolean>) => void;
   type: "add" | "edit";
 }
 
@@ -75,7 +75,7 @@ const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
           {type === "edit" && (
             <Button
               mode="outlined"
-              onPress={() => onDelete(true)}
+              onPress={() => onDelete && onDelete(true)}
               style={styles.delete}
             >
               Delete

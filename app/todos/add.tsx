@@ -6,15 +6,16 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TodoForm, Alert, Container, Text } from "@/components";
+import { TodoForm, Container } from "@/components";
 import { Todo } from "@/types";
 import { colors, globalStyles } from "@/constants";
 import { generateId } from "@/utils";
 import { useRouter } from "expo-router";
+import { useTodos } from "@/hooks/useTodos";
 
 const AddTodo = () => {
   const router = useRouter();
-  const [onDelete, setOnDelete] = useState(false);
+  const addTodo = useTodos(state => state.addTodo);
 
   const todoData = useMemo<Todo>(() => {
     return {
@@ -26,29 +27,12 @@ const AddTodo = () => {
   }, []);
 
   const onSubmitTask = (values: Todo) => {
-    console.log(values);
+    addTodo(values);
     router.back();
-  };
-
-  const onDeleteTodo = () => {
-    // collection.doc(taskData.id).delete();
-    // setOnDelete(false);
-    // navigation.goBack();
   };
 
   return (
     <>
-      <Alert
-        visible={onDelete}
-        onDismiss={() => setOnDelete(false)}
-        onPress={onDeleteTodo}
-        okText="Delete"
-        dismissText="Cancel"
-      >
-        <Text style={globalStyles.textWhite}>
-          Are you sure you want to delete this todo?
-        </Text>
-      </Alert>
       <KeyboardAwareScrollView style={styles.container}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
@@ -57,7 +41,6 @@ const AddTodo = () => {
                 data={todoData}
                 onSubmit={onSubmitTask}
                 type={"add"}
-                onDelete={setOnDelete}
               />
             </View>
           </Container>

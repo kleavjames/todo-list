@@ -9,32 +9,35 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Alert, Container, Text, TodoForm } from "@/components";
 import { Todo } from "@/types";
 import { colors, globalStyles } from "@/constants";
-import { generateId } from "@/utils";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { useTodos } from "@/hooks/useTodos";
 
 const EditTodo = () => {
-  const params = useLocalSearchParams();
   const router = useRouter();
+  const { id } = useLocalSearchParams<{ id: string }>();
+  const [getTodo, updateTodo, deleteTodo] = useTodos((state) => [
+    state.getTodo,
+    state.updateTodo,
+    state.deleteTodo,
+  ]);
   const [onDelete, setOnDelete] = useState(false);
 
   const todoData = useMemo<Todo>(() => {
+    const todo = getTodo(id);
     return {
-      id: generateId(),
-      title: '',
-      dueDate: new Date(),
-      completed: false,
+      ...todo,
+      dueDate: new Date(todo.dueDate),
     };
   }, []);
 
   const onSubmitTask = (values: Todo) => {
-    console.log(values);
+    updateTodo(values);
     router.back();
   };
 
   const onDeleteTodo = () => {
-    // collection.doc(taskData.id).delete();
-    // setOnDelete(false);
-    // navigation.goBack();
+    deleteTodo(todoData.id);
+    router.back();
   };
 
   return (
