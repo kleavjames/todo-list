@@ -21,5 +21,11 @@ export const globalStyles = StyleSheet.create({
   },
   textPrimary: {
     color: colors.primary,
-  }
+  },
+  relative: {
+    position: 'relative',
+  },
+  textAlignAuto: {
+    textAlign: 'auto',
+  },
 })

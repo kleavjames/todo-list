@@ -9,7 +9,7 @@ import {
 import { Link } from "expo-router";
 import { colors, globalStyles, normalize } from "@/constants";
 import { Todo } from "@/types";
-import { Text, Container, Button, Header } from "@/components";
+import { Text, Container, Button, Header, Checkbox } from "@/components";
 
 const Todos = () => {
   const renderTodoItems = useCallback<ListRenderItem<Todo>>(({ item }) => {
@@ -20,11 +20,11 @@ const Todos = () => {
             {item.title}
           </Text>
         </TouchableOpacity>
-        {/* <Checkbox
-            onPress={() => onCompleteTask(item)}
+        <Checkbox
+            onPress={() => {}}
             styles={styles.check}
             status={item.completed ? 'checked' : 'unchecked'}
-          /> */}
+          />
       </View>
     );
   }, []);
