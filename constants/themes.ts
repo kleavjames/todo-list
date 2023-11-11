@@ -22,6 +22,9 @@ export const globalStyles = StyleSheet.create({
   textPrimary: {
     color: colors.primary,
   },
+  textLabel: {
+    color: colors.label,
+  },
   relative: {
     position: 'relative',
   },

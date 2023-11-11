@@ -10,21 +10,45 @@ import { Link } from "expo-router";
 import { colors, globalStyles, normalize } from "@/constants";
 import { Todo } from "@/types";
 import { Text, Container, Button, Header, Checkbox } from "@/components";
+import { formattedDate } from "@/utils";
+
+// testing data
+const todos = [
+  {
+    id: "2QJH6p",
+    title: "Complete home task",
+    dueDate: new Date("2023-11-22T08:23:00.000Z"),
+    completed: false,
+  },
+];
 
 const Todos = () => {
   const renderTodoItems = useCallback<ListRenderItem<Todo>>(({ item }) => {
     return (
       <View style={styles.todoWrapper}>
-        <TouchableOpacity style={globalStyles.flex} onPress={() => {}}>
-          <Text variant="titleMedium" style={globalStyles.textWhite}>
-            {item.title}
-          </Text>
-        </TouchableOpacity>
+        <Link
+          href={{
+            pathname: "/todos/[id]",
+            params: {
+              id: item.id,
+            },
+          }}
+          asChild
+        >
+          <TouchableOpacity style={globalStyles.flex}>
+            <Text variant="titleMedium" style={globalStyles.textWhite}>
+              {item.title}
+            </Text>
+            <Text variant="bodySmall" style={globalStyles.textLabel}>
+              {formattedDate(item.dueDate)}
+            </Text>
+          </TouchableOpacity>
+        </Link>
         <Checkbox
-            onPress={() => {}}
-            styles={styles.check}
-            status={item.completed ? 'checked' : 'unchecked'}
-          />
+          onPress={() => {}}
+          styles={styles.check}
+          status={item.completed ? "checked" : "unchecked"}
+        />
       </View>
     );
   }, []);
@@ -42,7 +66,7 @@ const Todos = () => {
       <Header />
       <View style={styles.todoList}>
         <FlatList
-          data={[] as Todo[]}
+          data={todos as Todo[]}
           keyExtractor={(todo) => todo.id.toString()}
           renderItem={renderTodoItems}
           ItemSeparatorComponent={renderSeparator}

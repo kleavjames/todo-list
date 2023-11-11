@@ -6,13 +6,14 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TodoForm, Alert, Container, Text } from "@/components";
+import { Alert, Container, Text, TodoForm } from "@/components";
 import { Todo } from "@/types";
 import { colors, globalStyles } from "@/constants";
 import { generateId } from "@/utils";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
-const AddTodo = () => {
+const EditTodo = () => {
+  const params = useLocalSearchParams();
   const router = useRouter();
   const [onDelete, setOnDelete] = useState(false);
 
@@ -56,7 +57,7 @@ const AddTodo = () => {
               <TodoForm
                 data={todoData}
                 onSubmit={onSubmitTask}
-                type={"add"}
+                type={"edit"}
                 onDelete={setOnDelete}
               />
             </View>
@@ -74,4 +75,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddTodo;
+export default EditTodo;

@@ -1,5 +1,5 @@
-import AddTodoForm from "./AddTodoForm";
+import TodoForm from "./TodoForm";
 
 export {
-  AddTodoForm
+  TodoForm
 }
