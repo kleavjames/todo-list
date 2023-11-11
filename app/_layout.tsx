@@ -1,27 +1,32 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import {
+  MD3LightTheme as DefaultTheme,
+  PaperProvider,
+  configureFonts,
+} from 'react-native-paper';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
-import { useColorScheme } from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import { fontConfig } from '@/constants/fonts';
+import Colors from '@/constants/Colors';
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
 
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    ...FontAwesome.font,
+    pilat: require('../assets/fonts/PilatExtended-DemiBold.ttf'),
+    inter: require('../assets/fonts/Inter-Regular.ttf'),
+    interBold: require('../assets/fonts/Inter-Bold.ttf'),
+    interSemiBold: require('../assets/fonts/Inter-SemiBold.ttf'),
+    interMedium: require('../assets/fonts/Inter-Medium.ttf'), 
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
@@ -42,15 +47,29 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+export const theme = {
+  ...DefaultTheme,
+  // Specify custom property
+  myOwnProperty: true,
+  // Specify custom property in nested object
+  colors: {
+    ...DefaultTheme.colors,
+    ...Colors,
+  },
+  fonts: configureFonts({config: fontConfig}),
+};
 
+function RootLayoutNav() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+      <PaperProvider theme={theme}>
+        <StatusBar
+          barStyle="light-content"
+          translucent
+          backgroundColor={Colors.background}
+        />
+        <Stack screenOptions={{ headerShown: false}} />
+      </PaperProvider>
+    </SafeAreaProvider>
   );
 }
