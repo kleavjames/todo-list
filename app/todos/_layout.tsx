@@ -19,6 +19,15 @@ const TodosLayout = () => {
           },
         }}
       />
+      <Stack.Screen
+        name="[id]"
+        options={{
+          title: "Todo Detail",
+          headerTitleStyle: {
+            fontFamily: "inter",
+          },
+        }}
+      />
     </Stack>
   );
 };

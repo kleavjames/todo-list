@@ -25,6 +25,12 @@ export const globalStyles = StyleSheet.create({
   textLabel: {
     color: colors.label,
   },
+  bgForeground: {
+    backgroundColor: colors.foreground,
+  },
+  bgDark: {
+    backgroundColor: colors.backgroundDark,
+  },
   relative: {
     position: 'relative',
   },

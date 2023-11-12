@@ -17,6 +17,7 @@ const AddTodo = () => {
   const router = useRouter();
   const addTodo = useTodos(state => state.addTodo);
 
+  // initialize todo
   const todoData = useMemo<Todo>(() => {
     return {
       id: generateId(),

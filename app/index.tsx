@@ -3,11 +3,14 @@ import {Image, View, Dimensions, StyleSheet} from 'react-native';
 import { Link } from 'expo-router';
 import { Container, Text, Button } from '@/components';
 import { globalStyles, normalize } from '@/constants';
+import { useInitialize } from '@/hooks/useInitialize';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const imageHeight = SCREEN_HEIGHT / 2.5;
 
 const Welcome = () => {
+  const setFirstTime = useInitialize(state => state.setFirstTime);
+
   return (
     <Container>
       <View style={globalStyles.flex}>
@@ -29,7 +32,7 @@ const Welcome = () => {
         </Text>
       </View>
       <Link href={'/todos/'} asChild>
-        <Button mode="contained">
+        <Button mode="contained" onPress={setFirstTime}>
           Let's Start
         </Button>
       </Link>

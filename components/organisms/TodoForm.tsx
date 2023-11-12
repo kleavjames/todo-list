@@ -1,11 +1,12 @@
-import React, { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { FC, useCallback, useState } from "react";
+import { Platform, StyleSheet, View } from "react-native";
 import { Field, FieldProps, Formik } from "formik";
 import * as Yup from "yup";
 import { Todo } from "@/types";
 import { Button, Checkbox, Input, Text } from "../atom";
 import { colors, normalize } from "@/constants";
 import { DateTimePicker } from "../molecules";
+import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 
 interface Props {
   data: Todo;
@@ -20,6 +21,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const toggleDatePicker = () => {
+    setShowDatePicker(!showDatePicker);
+  }
+
   return (
     <Formik
       initialValues={data}
@@ -37,7 +44,7 @@ const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
       }) => (
         <>
           <Input
-            inputLabel="Task Title"
+            inputLabel="Title"
             onChangeText={handleChange("title")}
             onBlur={handleBlur("title")}
             value={values.title}
@@ -50,8 +57,18 @@ const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
               <DateTimePicker
                 inputLabel="Due Date"
                 value={field.value}
+                showPicker={showDatePicker}
+                setShowPicker={toggleDatePicker}
                 onChange={(event, selectedDate) => {
-                  form.setFieldValue(field.name, selectedDate)
+                  if (event.type === 'set') {
+                    form.setFieldValue(field.name, selectedDate)
+
+                    if (Platform.OS === 'android') {
+                      toggleDatePicker();
+                    }
+                  } else {
+                    toggleDatePicker();
+                  }
                 }}
               />
             )}

@@ -37,8 +37,8 @@ export const useTodos = create<TodoState>()(
               return {
                 ...sTodo,
                 ...todo,
-              }
-            })
+              };
+            });
           })
         ),
       deleteTodo: (id) =>

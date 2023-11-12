@@ -4,11 +4,12 @@ import {
   PaperProvider,
   configureFonts,
 } from 'react-native-paper';
-import { SplashScreen, Stack } from 'expo-router';
+import { Redirect, SplashScreen, Stack, useRootNavigationState, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
 import { fontConfig, colors as RNColors } from '@/constants';
+import { useInitialize } from '@/hooks/useInitialize';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -26,6 +27,15 @@ export default function RootLayout() {
     interSemiBold: require('../assets/fonts/Inter-SemiBold.ttf'),
     interMedium: require('../assets/fonts/Inter-Medium.ttf'), 
   });
+  const rootNavigationState = useRootNavigationState();
+  const router = useRouter();
+  const isFirstTime = useInitialize(state => state.firstTime);
+
+  // will only show welcome on first time
+  // navigate directly to todo list if not first time
+  const navigateToTodoList = () => {
+    router.replace('/todos/');
+  }
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
@@ -34,9 +44,13 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
+      if (!isFirstTime) {
+        console.log(isFirstTime)
+        navigateToTodoList();
+      }
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, isFirstTime]);
 
   if (!loaded) {
     return null;

@@ -1,7 +1,7 @@
 import { colors } from '@/constants';
 import { normalize } from '@/constants/size';
 import React, {FC} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 interface Props {
@@ -21,6 +21,7 @@ const Container: FC<Props> = ({children}) => {
         },
       ]}>
       {children}
+      {Platform.OS === 'android' && <View style={styles.space} />}
     </View>
   );
 };
@@ -31,6 +32,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: normalize(20),
   },
+  space: {
+    marginBottom: normalize(20)
+  }
 });
 
 export default Container;

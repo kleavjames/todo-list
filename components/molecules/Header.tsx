@@ -3,6 +3,7 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Text from '../atom/Text';
 import { useNavigation } from 'expo-router';
 import { colors, globalStyles, normalize } from '@/constants';
+import { formattedDate } from '@/utils';
 
 const Header: FC = () => {
   // const fullName = useUserStore(state => state.fullName);
@@ -15,20 +16,18 @@ const Header: FC = () => {
   return (
     <View style={styles.wrapper}>
       <View>
-        <Text style={globalStyles.textPrimary} variant="labelMedium">
+        <Text variant="titleMedium" style={styles.name}>
           Welcome back!
         </Text>
-        <Text variant="titleMedium" style={styles.name}>
-          Kleavant James
+        <Text style={globalStyles.textPrimary} variant="labelMedium">
+          Today is {formattedDate(new Date)}
         </Text>
       </View>
-      <TouchableOpacity onPress={navigateToProfile}>
-        <Image
-          style={styles.image}
-          source={require('@/assets/images/prof-pic.png')}
-          resizeMode="contain"
-        />
-      </TouchableOpacity>
+      <Image
+        style={styles.image}
+        source={require('@/assets/images/prof-pic.png')}
+        resizeMode="contain"
+      />
     </View>
   );
 };
