@@ -1,6 +1,7 @@
+import { Link } from "expo-router";
 import React from "react";
 import { Image, View, Dimensions, StyleSheet } from "react-native";
-import { Link } from "expo-router";
+
 import { Container, Text, Button } from "@/components";
 import { globalStyles, normalize } from "@/constants";
 import { useInitialize } from "@/hooks/useInitialize";
@@ -31,7 +32,7 @@ const Welcome = () => {
           DayTask
         </Text>
       </View>
-      <Link href={"/todos/"} asChild>
+      <Link href="/todos/" asChild>
         <Button mode="contained" onPress={setFirstTime}>
           Let's Start
         </Button>
