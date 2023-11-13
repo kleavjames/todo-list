@@ -1,9 +1,10 @@
-import React, {FC} from 'react';
-import {Text as PaperText, TextProps} from 'react-native-paper';
-import {TextComponent} from 'react-native';
-import { fontConfig } from '@/constants';
+import React, { FC } from "react";
+import { TextComponent } from "react-native";
+import { Text as PaperText, TextProps } from "react-native-paper";
 
-const Text: FC<TextProps<TextComponent>> = props => {
+import { fontConfig } from "@/constants";
+
+const Text: FC<TextProps<TextComponent>> = (props) => {
   return (
     <PaperText
       {...props}
@@ -11,7 +12,8 @@ const Text: FC<TextProps<TextComponent>> = props => {
         fonts: {
           default: fontConfig.default,
         },
-      }}>
+      }}
+    >
       {props.children}
     </PaperText>
   );

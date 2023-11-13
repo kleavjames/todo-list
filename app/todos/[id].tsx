@@ -1,3 +1,4 @@
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import {
   Keyboard,
@@ -6,11 +7,11 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import { Alert, Container, Text, TodoForm } from "@/components";
-import { Todo } from "@/types";
 import { colors, globalStyles } from "@/constants";
-import { useLocalSearchParams, useRouter } from "expo-router";
 import { useTodos } from "@/hooks/useTodos";
+import { Todo } from "@/types";
 
 const EditTodo = () => {
   const router = useRouter();
@@ -60,7 +61,7 @@ const EditTodo = () => {
               <TodoForm
                 data={todoData}
                 onSubmit={onSubmitTask}
-                type={"edit"}
+                type="edit"
                 onDelete={setOnDelete}
               />
             </View>

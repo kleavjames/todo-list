@@ -1,8 +1,16 @@
-import React, {FC} from 'react';
-import {Dimensions, TouchableOpacity, View, StyleSheet, ViewStyle} from 'react-native';
-import {Modal, Portal} from 'react-native-paper';
-import { Text } from '../atom';
-import { colors, globalStyles, normalize } from '@/constants';
+import React, { FC } from "react";
+import {
+  Dimensions,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
+import { Modal, Portal } from "react-native-paper";
+
+import { Text } from "../atom";
+
+import { colors, globalStyles, normalize } from "@/constants";
 
 interface Props {
   visible: boolean;
@@ -14,15 +22,15 @@ interface Props {
   children: React.ReactNode;
 }
 
-const width = Dimensions.get('window').width;
+const width = Dimensions.get("window").width;
 
 const Alert: FC<Props> = ({
   visible,
   onDismiss,
   containerStyle,
   onPress,
-  okText = 'Ok',
-  dismissText = 'Cancel',
+  okText = "Ok",
+  dismissText = "Cancel",
   children,
 }) => {
   return (
@@ -30,7 +38,8 @@ const Alert: FC<Props> = ({
       <Modal
         visible={visible}
         dismissableBackButton={false}
-        contentContainerStyle={[styles.container, containerStyle]}>
+        contentContainerStyle={[styles.container, containerStyle]}
+      >
         {children}
         <View style={styles.buttons}>
           {onPress && (
@@ -51,16 +60,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.foreground,
     width: normalize(width / 1.3),
-    alignSelf: 'center',
+    alignSelf: "center",
     padding: normalize(20),
-    minHeight: normalize(150, 'height'),
+    minHeight: normalize(150, "height"),
   },
   buttons: {
     flex: 1,
     gap: normalize(20),
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-end",
   },
 });
 

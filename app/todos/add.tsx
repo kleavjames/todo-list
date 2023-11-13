@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import {
   Keyboard,
   StyleSheet,
@@ -15,13 +15,13 @@ import { useTodos } from "@/hooks/useTodos";
 
 const AddTodo = () => {
   const router = useRouter();
-  const addTodo = useTodos(state => state.addTodo);
+  const addTodo = useTodos((state) => state.addTodo);
 
   // initialize todo
   const todoData = useMemo<Todo>(() => {
     return {
       id: generateId(),
-      title: '',
+      title: "",
       dueDate: new Date(),
       completed: false,
     };
@@ -38,11 +38,7 @@ const AddTodo = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Container>
             <View style={globalStyles.flex}>
-              <TodoForm
-                data={todoData}
-                onSubmit={onSubmitTask}
-                type={"add"}
-              />
+              <TodoForm data={todoData} onSubmit={onSubmitTask} type={"add"} />
             </View>
           </Container>
         </TouchableWithoutFeedback>

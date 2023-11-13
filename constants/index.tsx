@@ -1,3 +1,3 @@
-export * from './themes';
-export * from './fonts';
-export * from './size';
+export * from "./themes";
+export * from "./fonts";
+export * from "./size";

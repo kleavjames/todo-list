@@ -1,14 +1,15 @@
-import { colors } from '@/constants';
-import { normalize } from '@/constants/size';
-import React, {FC} from 'react';
-import {Platform, StyleSheet, View} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import React, { FC } from "react";
+import { Platform, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { colors } from "@/constants";
+import { normalize } from "@/constants/size";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Container: FC<Props> = ({children}) => {
+const Container: FC<Props> = ({ children }) => {
   const insets = useSafeAreaInsets();
 
   return (
@@ -19,9 +20,10 @@ const Container: FC<Props> = ({children}) => {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
         },
-      ]}>
+      ]}
+    >
       {children}
-      {Platform.OS === 'android' && <View style={styles.space} />}
+      {Platform.OS === "android" && <View style={styles.space} />}
     </View>
   );
 };
@@ -33,8 +35,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: normalize(20),
   },
   space: {
-    marginBottom: normalize(20)
-  }
+    marginBottom: normalize(20),
+  },
 });
 
 export default Container;

@@ -1,27 +1,27 @@
-import React from 'react';
-import {Image, View, Dimensions, StyleSheet} from 'react-native';
-import { Link } from 'expo-router';
-import { Container, Text, Button } from '@/components';
-import { globalStyles, normalize } from '@/constants';
-import { useInitialize } from '@/hooks/useInitialize';
+import React from "react";
+import { Image, View, Dimensions, StyleSheet } from "react-native";
+import { Link } from "expo-router";
+import { Container, Text, Button } from "@/components";
+import { globalStyles, normalize } from "@/constants";
+import { useInitialize } from "@/hooks/useInitialize";
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 const imageHeight = SCREEN_HEIGHT / 2.5;
 
 const Welcome = () => {
-  const setFirstTime = useInitialize(state => state.setFirstTime);
+  const setFirstTime = useInitialize((state) => state.setFirstTime);
 
   return (
     <Container>
       <View style={globalStyles.flex}>
         <Image
           style={styles.logo}
-          source={require('@/assets/images/logo.png')}
+          source={require("@/assets/images/logo.png")}
           resizeMode="center"
         />
         <Image
           style={styles.welcomeImg}
-          source={require('@/assets/images/welcome.png')}
+          source={require("@/assets/images/welcome.png")}
           resizeMode="contain"
         />
         <Text variant="displayMedium" style={globalStyles.textWhite}>
@@ -31,7 +31,7 @@ const Welcome = () => {
           DayTask
         </Text>
       </View>
-      <Link href={'/todos/'} asChild>
+      <Link href={"/todos/"} asChild>
         <Button mode="contained" onPress={setFirstTime}>
           Let's Start
         </Button>
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     width: normalize(100),
   },
   welcomeImg: {
-    width: '100%',
-    height: normalize(imageHeight, 'height'),
+    width: "100%",
+    height: normalize(imageHeight, "height"),
   },
 });
 

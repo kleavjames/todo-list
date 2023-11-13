@@ -1,100 +1,100 @@
-import {normalize} from './size';
+import { normalize } from "./size";
 
 export const fontConfig: any = {
   displayLarge: {
-    fontFamily: 'pilat',
+    fontFamily: "pilat",
     fontSize: normalize(57),
     letterSpacing: 0,
     lineHeight: 64,
   },
   displayMedium: {
-    fontFamily: 'pilat',
+    fontFamily: "pilat",
     fontSize: normalize(45),
     letterSpacing: 0,
     lineHeight: 52,
   },
   displaySmall: {
-    fontFamily: 'pilat',
+    fontFamily: "pilat",
     fontSize: normalize(36),
     letterSpacing: 0,
     lineHeight: 44,
   },
   headlineLarge: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(32),
     letterSpacing: 0,
     lineHeight: 40,
   },
   headlineMedium: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(28),
     letterSpacing: 0,
     lineHeight: 36,
   },
   headlineSmall: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(24),
     letterSpacing: 0,
     lineHeight: 32,
   },
   titleLarge: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(22),
     letterSpacing: 0,
     lineHeight: 28,
   },
   titleMedium: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(16),
     letterSpacing: 0.15,
     lineHeight: 24,
   },
   titleSmall: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(14),
     letterSpacing: 0.1,
     lineHeight: 20,
   },
   labelLarge: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(14),
     letterSpacing: 0.1,
     lineHeight: 20,
   },
   labelMedium: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(12),
     letterSpacing: 0.5,
     lineHeight: 16,
   },
   labelSmall: {
-    fontFamily: 'interMedium',
+    fontFamily: "interMedium",
     fontSize: normalize(11),
     letterSpacing: 0.5,
     lineHeight: 16,
   },
   bodyLarge: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(16),
     letterSpacing: 0.15,
     lineHeight: 24,
   },
   bodyMedium: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(14),
     letterSpacing: 0.25,
     lineHeight: 20,
   },
   bodySmall: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     fontSize: normalize(12),
     letterSpacing: 0.4,
     lineHeight: 16,
   },
   default: {
-    fontFamily: 'inter',
+    fontFamily: "inter",
     letterSpacing: 0,
   },
 };
 
-export type CustomTexts = 'normal' | 'header';
+export type CustomTexts = "normal" | "header";

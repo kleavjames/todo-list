@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import React, { useCallback, useMemo } from "react";
 import {
   FlatList,
@@ -7,12 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Link } from "expo-router";
-import { colors, globalStyles, normalize } from "@/constants";
-import { Todo } from "@/types";
+
 import { Text, Container, Button, Header, Checkbox } from "@/components";
-import { formattedDate } from "@/utils";
+import { colors, globalStyles, normalize } from "@/constants";
 import { useTodos } from "@/hooks/useTodos";
+import { Todo } from "@/types";
+import { formattedDate } from "@/utils";
 
 const Todos = () => {
   const [todos, updateTodo] = useTodos((state) => [
@@ -36,7 +37,7 @@ const Todos = () => {
       .slice()
       .sort(
         (todoA, todoB) =>
-          new Date(todoB.dueDate).getTime() - new Date(todoA.dueDate).getTime()
+          new Date(todoB.dueDate).getTime() - new Date(todoA.dueDate).getTime(),
       );
     // sort by completed
     return sortTodosByCompleted(sortedTodos);
@@ -44,7 +45,7 @@ const Todos = () => {
 
   const onCompleteTodo = useCallback((item: Todo) => {
     const copyTodo = { ...item };
-    copyTodo.completed = item.completed ? false : true;
+    copyTodo.completed = !item.completed;
     updateTodo(copyTodo);
   }, []);
 
@@ -77,13 +78,13 @@ const Todos = () => {
           </Link>
           <Checkbox
             onPress={() => onCompleteTodo(item)}
-            styles={Platform.OS === 'ios' ? styles.check : undefined}
+            styles={Platform.OS === "ios" ? styles.check : undefined}
             status={item.completed ? "checked" : "unchecked"}
           />
         </View>
       );
     },
-    [onCompleteTodo]
+    [onCompleteTodo],
   );
 
   const renderSeparator = () => <View style={styles.separator} />;
@@ -106,7 +107,7 @@ const Todos = () => {
           ListEmptyComponent={renderEmptyComponent}
         />
       </View>
-      <Link href={"/todos/add"} asChild>
+      <Link href="/todos/add" asChild>
         <Button onPress={() => {}} mode="contained">
           Add Todo
         </Button>

@@ -1,8 +1,9 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { produce } from "immer";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { Todo } from "@/types";
-import { produce } from "immer";
 
 interface TodoState {
   todos: Todo[];
@@ -20,7 +21,7 @@ export const useTodos = create<TodoState>()(
         set(
           produce((state) => {
             state.todos.push(todo);
-          })
+          }),
         ),
       getTodo: (id) => {
         const foundTodo = get().todos.find((todo) => todo.id === id)!;
@@ -39,18 +40,18 @@ export const useTodos = create<TodoState>()(
                 ...todo,
               };
             });
-          })
+          }),
         ),
       deleteTodo: (id) =>
         set(
           produce((state) => {
             state.todos = state.todos.filter((todo: Todo) => todo.id !== id);
-          })
+          }),
         ),
     }),
     {
       name: "todo-storage",
       storage: createJSONStorage(() => AsyncStorage),
-    }
-  )
+    },
+  ),
 );

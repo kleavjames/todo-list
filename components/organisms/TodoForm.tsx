@@ -1,12 +1,13 @@
-import React, { FC, useCallback, useState } from "react";
-import { Platform, StyleSheet, View } from "react-native";
 import { Field, FieldProps, Formik } from "formik";
+import React, { FC, useState } from "react";
+import { Platform, StyleSheet, View } from "react-native";
 import * as Yup from "yup";
-import { Todo } from "@/types";
+
 import { Button, Checkbox, Input, Text } from "../atom";
-import { colors, normalize } from "@/constants";
 import { DateTimePicker } from "../molecules";
-import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+
+import { colors, normalize } from "@/constants";
+import { Todo } from "@/types";
 
 interface Props {
   data: Todo;
@@ -25,7 +26,7 @@ const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
 
   const toggleDatePicker = () => {
     setShowDatePicker(!showDatePicker);
-  }
+  };
 
   return (
     <Formik
@@ -60,10 +61,10 @@ const AddTodoForm: FC<Props> = ({ data, onSubmit, onDelete, type = "add" }) => {
                 showPicker={showDatePicker}
                 setShowPicker={toggleDatePicker}
                 onChange={(event, selectedDate) => {
-                  if (event.type === 'set') {
-                    form.setFieldValue(field.name, selectedDate)
+                  if (event.type === "set") {
+                    form.setFieldValue(field.name, selectedDate);
 
-                    if (Platform.OS === 'android') {
+                    if (Platform.OS === "android") {
                       toggleDatePicker();
                     }
                   } else {

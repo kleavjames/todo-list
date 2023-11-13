@@ -1,15 +1,11 @@
-import React, { FC, useState } from "react";
-import {
-  Platform,
-  Pressable,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from "react-native";
 import RNDateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
+import React, { FC } from "react";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+
 import { Button, Text } from "../atom";
+
 import { colors, normalize } from "@/constants";
 import { formattedDate } from "@/utils";
 

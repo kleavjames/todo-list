@@ -1,13 +1,15 @@
-import React, {FC} from 'react';
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
 import {
   HelperText,
   TextInput,
   TextInputProps,
   MD3Colors,
-} from 'react-native-paper';
-import {StyleSheet, View} from 'react-native';
-import Text from './Text';
-import { colors, fontConfig, globalStyles, normalize } from '@/constants';
+} from "react-native-paper";
+
+import Text from "./Text";
+
+import { colors, fontConfig, globalStyles, normalize } from "@/constants";
 
 interface Props extends TextInputProps {
   inputLabel?: string;
@@ -16,7 +18,7 @@ interface Props extends TextInputProps {
   renderRight?: boolean;
 }
 
-const Input: FC<Props> = props => {
+const Input: FC<Props> = (props) => {
   return (
     <View style={styles.wrapper}>
       {props.inputLabel && (
@@ -53,7 +55,8 @@ const Input: FC<Props> = props => {
           }}
           type="error"
           style={styles.error}
-          visible>
+          visible
+        >
           {props.errorMessage}
         </HelperText>
       )}
@@ -63,7 +66,7 @@ const Input: FC<Props> = props => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginVertical: normalize(10, 'height'),
+    marginVertical: normalize(10, "height"),
   },
   outline: {
     borderRadius: 0,
@@ -72,22 +75,22 @@ const styles = StyleSheet.create({
   },
   label: {
     color: colors.label,
-    marginBottom: normalize(10, 'height'),
+    marginBottom: normalize(10, "height"),
   },
   error: {
     color: MD3Colors.error50,
   },
   leftIcon: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1000,
     left: normalize(15),
-    top: normalize(12, 'height'),
+    top: normalize(12, "height"),
   },
   rightIcon: {
-    position: 'absolute',
+    position: "absolute",
     zIndex: 1000,
     right: normalize(15),
-    top: normalize(12, 'height'),
+    top: normalize(12, "height"),
   },
 });
 

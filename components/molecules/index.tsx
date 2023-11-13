@@ -1,11 +1,6 @@
-import Header from "./Header";
-import CustomHeader from "./CustomHeader";
 import Alert from "./Alert";
+import CustomHeader from "./CustomHeader";
 import DateTimePicker from "./DateTimePicker";
+import Header from "./Header";
 
-export {
-  Alert,
-  Header,
-  CustomHeader,
-  DateTimePicker,
-}
+export { Alert, Header, CustomHeader, DateTimePicker };
