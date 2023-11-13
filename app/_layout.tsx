@@ -1,22 +1,17 @@
 import { useFonts } from "expo-font";
+import { SplashScreen, Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
+import { StatusBar } from "react-native";
 import {
   MD3LightTheme as DefaultTheme,
   PaperProvider,
   configureFonts,
 } from "react-native-paper";
 import {
-  Redirect,
-  SplashScreen,
-  Stack,
-  useRootNavigationState,
-  useRouter,
-} from "expo-router";
-import { useEffect } from "react";
-import { StatusBar } from "react-native";
-import {
   SafeAreaProvider,
   initialWindowMetrics,
 } from "react-native-safe-area-context";
+
 import { fontConfig, colors as RNColors } from "@/constants";
 import { useInitialize } from "@/hooks/useInitialize";
 
@@ -53,7 +48,6 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       if (!isFirstTime) {
-        console.log(isFirstTime);
         navigateToTodoList();
       }
       SplashScreen.hideAsync();
