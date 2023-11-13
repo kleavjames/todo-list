@@ -7,7 +7,7 @@
 <!-- Body -->
 
 <p align="center">
-  <video src="demo.mp4" controls title="Todo List Demo"></video>  
+  <img align="center" alt="Product: demo" src="./.gh-assets/presentation.gif" height="500" />
 </p>
 
 <p align="center">Add you day to day task with.</p>
